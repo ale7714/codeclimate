@@ -1,6 +1,7 @@
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
+puts 's'
 # require "simplecov"
 # SimpleCov.start do
 #   add_filter "/spec/"
