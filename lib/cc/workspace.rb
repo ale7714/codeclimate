@@ -22,6 +22,7 @@ module CC
       end
     end
 
+    # TODO: something
     def remove(patterns)
       Array(patterns).each do |pattern|
         exclusion = Exclusion.new(pattern)
