@@ -9,6 +9,7 @@ module CC
         expand_shorthand
       end
 
+      # TODO: this a test
       def to_hash
         @config
       end
