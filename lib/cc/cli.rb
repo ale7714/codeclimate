@@ -23,8 +23,9 @@ module CC
       ENV["CODECLIMATE_DEBUG"]
     # FIXME
     end
-    
-    # TODO something something 
+    # FIXME
+
+    # TODO something something
     def self.debug(message, values = {})
       if debug?
         if values.any?
