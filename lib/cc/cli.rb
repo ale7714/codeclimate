@@ -22,7 +22,8 @@ module CC
     def self.debug?
       ENV["CODECLIMATE_DEBUG"]
     end
-
+    
+    # TODO something something 
     def self.debug(message, values = {})
       if debug?
         if values.any?
