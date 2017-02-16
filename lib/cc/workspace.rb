@@ -11,6 +11,7 @@ module CC
       self.class.new(path_tree.clone)
     end
 
+    # TODO: something
     def paths
       path_tree.all_paths
     end
@@ -21,6 +22,7 @@ module CC
       end
     end
 
+    # TODO: something
     def remove(patterns)
       Array(patterns).each do |pattern|
         exclusion = Exclusion.new(pattern)
