@@ -13,7 +13,7 @@ module CC
       default_resolvers = [::Resolv::Hosts.new, ::Resolv::DNS.new]
       ::Resolv::DefaultResolver.replace_resolvers(default_resolvers)
     end
-
+    # TODO
     class Fixed
       def initialize(fallback)
         @addresses = {}
@@ -32,7 +32,7 @@ module CC
       end
 
       private
-
+      # FIXME
       attr_reader :addresses, :fallback
     end
   end

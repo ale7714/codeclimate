@@ -18,11 +18,14 @@ module CC
     autoload :Test, "cc/cli/test"
     autoload :ValidateConfig, "cc/cli/validate_config"
     autoload :Version, "cc/cli/version"
-
+    # FIXME
     def self.debug?
       ENV["CODECLIMATE_DEBUG"]
+    # FIXME
     end
+    # FIXME
 
+    # TODO something something
     def self.debug(message, values = {})
       if debug?
         if values.any?
