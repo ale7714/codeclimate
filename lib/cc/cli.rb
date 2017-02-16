@@ -18,7 +18,7 @@ module CC
     autoload :Test, "cc/cli/test"
     autoload :ValidateConfig, "cc/cli/validate_config"
     autoload :Version, "cc/cli/version"
-
+    # FIXME
     def self.debug?
       ENV["CODECLIMATE_DEBUG"]
     end
