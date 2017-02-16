@@ -21,6 +21,7 @@ module CC
     # FIXME
     def self.debug?
       ENV["CODECLIMATE_DEBUG"]
+    # FIXME
     end
     
     # TODO something something 
