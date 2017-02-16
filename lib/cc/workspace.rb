@@ -11,6 +11,7 @@ module CC
       self.class.new(path_tree.clone)
     end
 
+    # TODO: something
     def paths
       path_tree.all_paths
     end
