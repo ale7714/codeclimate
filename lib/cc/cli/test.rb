@@ -3,7 +3,7 @@ require "cc/yaml"
 module CC
   module CLI
     class Marker
-      def self.from_text(engine_name, line_number, text)
+      def self.from_text(line_number, text)
         marker = Marker.new(line_number, text)
         attrs = attrs_from_marker(text.sub(/^.*\[issue\] ?/, ""))
 
