@@ -44,7 +44,7 @@ module CC
         @on_output = block
       end
 
-      def run(options = [])
+      def run
         true
       end
 
