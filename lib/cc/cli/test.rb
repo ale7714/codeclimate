@@ -5,7 +5,6 @@ module CC
     class Marker
       def self.from_text(line_number, text)
         marker = Marker.new(line_number, text)
-        attrs = attrs_from_marker(text.sub(/^.*\[issue\] ?/, ""))
 
         marker
       end
