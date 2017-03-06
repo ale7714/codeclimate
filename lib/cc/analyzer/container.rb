@@ -44,57 +44,8 @@ module CC
         @on_output = block
       end
 
-      def run(options = [])
-        started = Time.now
-        @listener.started(container_data)
-
-        command = docker_run_command(options)
-        CLI.debug("docker run: #{command.inspect}")
-        pid, _, out, err = POSIX::Spawn.popen4(*command)
-
-        @t_out = read_stdout(out)
-        @t_err = read_stderr(err)
-        t_timeout = timeout_thread
-
-        # blocks until the engine stops. this is put in a thread so that we can
-        # explicitly abort it as part of #stop. otherwise a run-away container
-        # could still block here forever if the docker-kill/wait is not
-        # successful. there may still be stdout in flight if it was being
-        # produced more quickly than consumed.
-        @t_wait = Thread.new { _, @status = Process.waitpid2(pid) }
-        @t_wait.join
-
-        # blocks until all readers are done. they're still governed by the
-        # timeout thread at this point. if we hit the timeout while processing
-        # output, the threads will be Thread#killed as part of #stop and this
-        # will unblock with the correct value in @timed_out
-        [@t_out, @t_err].each(&:join)
-
-        if @timed_out
-          duration = timeout * 1000
-          @listener.timed_out(container_data(duration: duration))
-        else
-          duration = ((Time.now - started) * 1000).round
-          @listener.finished(container_data(duration: duration, status: @status))
-        end
-
-        Result.new(
-          @status && @status.exitstatus,
-          @timed_out,
-          duration,
-          @maximum_output_exceeded,
-          output_byte_count,
-          @stderr_io.string,
-        )
-      ensure
-        kill_reader_threads
-        t_timeout.kill if t_timeout
-      end
-
-      def stop(message = nil)
-        reap_running_container(message)
-        kill_reader_threads
-        kill_wait_thread
+      def run
+        true
       end
 
       private
