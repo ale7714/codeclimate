@@ -33,6 +33,20 @@ module CC
           listener: composite_listener,
         )
 
+        container = Container.new(
+          image: @metadata["image"],
+          command: @metadata["command"],
+          name: container_name,
+          listener: composite_listener,
+        )
+
+        container = Container.new(
+          image: @metadata["image"],
+          command: @metadata["command"],
+          name: container_name,
+          listener: composite_listener,
+        )
+        
         container.on_output("\0") do |raw_output|
           CLI.debug("#{qualified_name} engine output: #{raw_output.strip}")
           output = EngineOutput.new(raw_output)

@@ -91,12 +91,6 @@ module CC
         t_timeout.kill if t_timeout
       end
 
-      def stop(message = nil)
-        reap_running_container(message)
-        kill_reader_threads
-        kill_wait_thread
-      end
-
       private
 
       attr_reader :output_byte_count, :counter_mutex
