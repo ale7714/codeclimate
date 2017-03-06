@@ -3,25 +3,9 @@ require "cc/yaml"
 module CC
   module CLI
     class Marker
-      def self.from_text(engine_name, test_file, line_number, text)
+      def self.from_text(engine_name, line_number, text)
         marker = Marker.new(line_number, text)
         attrs = attrs_from_marker(text.sub(/^.*\[issue\] ?/, ""))
-
-        marker.issue = attrs.merge(
-          "engine_name" => engine_name,
-          "location" => {
-            "path" => test_file,
-            "lines" => {
-              "begin" => line_number + 1,
-              "end" => line_number + 1,
-            },
-          },
-        )
-
-        if marker.issue["category"]
-          marker.issue["categories"] = Array.wrap(marker.issue["category"])
-          marker.issue.delete("category")
-        end
 
         marker
       end
